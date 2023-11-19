@@ -1,4 +1,3 @@
-from pages.Signup_login_page.signup_login_page_locators import SignupFormLocators
 from pages.base_page import BasePage
 from datetime import datetime
 
@@ -12,20 +11,18 @@ class SignupLogin(BasePage):
     PASSWORD_FIELD = ("xpath", "(//input[@type='password'])[2]")
     CONTINUE_BUTTON = ("xpath", "(//button[@type='submit'])[4]")
 
+    # Методы для страницы
     def check_signup_form(self, cur_language):
-
         print(f"{datetime.now()}   Start step Check that form [Sign up] opened")
-        if self.element_is_visible(*self.SIGNUP_FORM,  timeout=5):
+        if self.element_is_visible(*self.SIGNUP_FIELD,  timeout=5):
             print(f"{datetime.now()}   'Sign up' form opened")
 
-
-    # Методы для страницы
     def enter_login(self):
-        self.driver.find_element(*self.LOGIN_FIELD).send_keys("example@mail.ru")
+        self.driver.find_element(*self.SIGNUP_FIELD).send_keys("aqa.tomelo.an@gmail.com")
 
     def enter_password(self):
-        self.driver.find_element(*self.PASSWORD_FIELD).send_keys("123123123")
+        self.driver.find_element(*self.PASSWORD_FIELD).send_keys("iT9Vgqi6d$fiZ*Z")
 
-    def click_on_login_button(self):
-        self.driver.find_element(*self.LOGIN_BUTTON).click()
+    def click_button_continue(self):
+        self.driver.find_element(*self.CONTINUE_BUTTON).click()
 
