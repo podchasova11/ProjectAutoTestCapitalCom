@@ -3,6 +3,7 @@ import time
 from selenium.webdriver.remote.webdriver import WebDriver
 from selenium.webdriver.support.ui import WebDriverWait as Wait
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.wait import WebDriverWait
 
 
 class BasePage:
@@ -16,6 +17,7 @@ class BasePage:
     # Тут создаются необходимые объекты, которые будут доступны в pages
     def __int__(self, driver):
         self.driver: WebDriver = driver
+        self.wait = WebDriverWait(self.driver, 10, poll_frequency=1)
 
     # Данный метод будет вызываться для любой страницы, принимая ее PAGE_URL
     def open(self):
