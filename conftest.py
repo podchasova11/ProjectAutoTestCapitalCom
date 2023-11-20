@@ -12,6 +12,22 @@ from allure_commons.types import AttachmentType
 import conf
 from conf import CHROME_WINDOW_SIZES
 
+import pytest
+import time
+
+from selenium import webdriver
+from webdriver_manager.chrome import ChromeDriverManager
+from selenium.webdriver.chrome.service import Service
+
+
+@pytest.fixture(autouse=True)
+def get_driver(request):
+    service = Service(ChromeDriverManager().install())
+    driver = webdriver.Chrome(service=service)
+    request.cls.driver = driver
+    yield
+    driver.quit()
+
 
 @pytest.fixture()
 def cur_time():
