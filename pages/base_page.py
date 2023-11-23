@@ -1,3 +1,5 @@
+from datetime import datetime
+
 import pytest
 import time
 from selenium.webdriver.remote.webdriver import WebDriver
@@ -15,13 +17,15 @@ class BasePage:
     COUNTRIES_LIST = ("xpath", "(//a[contains(@class, 'switchCountry')])")
 
     # Тут создаются необходимые объекты, которые будут доступны в pages
-    def __int__(self, driver):
+    def __int__(self, driver, page_url=""):
         self.driver: WebDriver = driver
         self.wait = WebDriverWait(self.driver, 10, poll_frequency=1)
+        self.page_url = page_url
 
-    # Данный метод будет вызываться для любой страницы, принимая ее PAGE_URL
+    # Данный метод будет вызываться для любой страницы, принимая ее page_url
     def open(self):
-        self.driver.get(self.PAGE_URL)
+        self.driver.get(self.page_url)
+        print(f"{datetime.now()}   Load page {self.page_url}")
 
     # Ниже описываются общие для всех страниц методы
     def click_on_logo(self):
