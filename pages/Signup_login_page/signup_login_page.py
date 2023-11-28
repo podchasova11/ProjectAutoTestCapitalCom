@@ -25,4 +25,3 @@ class SignupLogin(BasePage):
 
     def click_button_continue(self):
         self.driver.find_element(*self.CONTINUE_BUTTON).click()
-
